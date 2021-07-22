@@ -5,23 +5,27 @@
     <br>
     <div class="container">
         <div class="blog-header">
-            <h1 class="blog-title">Author</h1>
-            <p class="lead blog-description">A brief look into the author.</p>
+            <h1 class="blog-title">Auteur</h1>
+            <p class="lead blog-description">Coup d'oeil aux oeuvres de l'auteur</p>
         </div>
         <div class="row">
             <div class="col-sm-8 blog-main">
                 <div class="blog-post">
                     <h2 class="blog-post-title">{{ author.name|raw }}</h2>
-                    <p>Title: {{ author.title|raw }}</p>
-                    <p>Company: {{ author.company|raw }}</p>
-                    <p>Short Biography: {{ author.shortBio|raw }}</p>
+                    <p>Titre: {{ author.title|raw }}</p>
+                    <p>Entreprise: {{ author.company|raw }}</p>
+                    <p>Courte Biography: <br>{{ author.shortBio|raw }}</p>
                     <ul>
                         <AmpContent>
+
                             <li>{{ author.phone }}</li>
 
                             </NonAmpContent>
                             <AmpContent>
-                                <li>{{ author.facebook }}</li>
+                                <li>
+                                    <a href="{{ author.facebook }}"> {{ author.facebook }}
+                                    </a>
+                                </li>
 
                                 </NonAmpContent>
                                 <AmpContent>
@@ -29,7 +33,11 @@
 
                                     </NonAmpContent>
                                     <AmpContent>
-                                        <li>{{ author.github }}</li>
+                                        <li>
+                                            <a href="{{ author.github }}">
+                                                {{ author.github }}
+                                            </a>
+                                        </li>
 
                                         </NonAmpContent>
                     </ul>

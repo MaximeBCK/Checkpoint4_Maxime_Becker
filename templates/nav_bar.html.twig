@@ -1,21 +1,14 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div id="navbar" class="collapse navbar-collapse pull-right">
-        <ul class="nav navbar-nav">
-            <AmpContent>
-                <li><a href="{{ path("homepage") }}">Home</a></li>
-
-                </NonAmpContent>
-                <AmpContent>
-                    <li><a href="{{ path("admin_index") }}">Admin</a></li>
-                    <li><a href="{{ logout_url("secured_area") }}">Logout</a></li>
-
-                </AmpContent>
-
-                <NonAmpContent>
-
-                    <li class="active"><a href="/connect/auth0">Login</a></li>
-
-                </NonAmpContent>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container px-5">
+        <a class="navbar-brand"> Bloggify</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ path("homepage") }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path("admin_index") }}">Profil</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ logout_url("secured_area") }}">Logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="/connect/auth0">Log In</a></li>
+            </ul>
+        </div>
     </div>
 </nav>

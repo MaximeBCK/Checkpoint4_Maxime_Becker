@@ -1,22 +1,55 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello AdminController!{% endblock %}
-
 {% block body %}
-    {% include "nav_bar.html.twig" %}
-    <br>
-    <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/mbecker/Desktop/Checkpoint4/Blooger/src/Controller/AdminController.php'|file_link(0) }}">src/Controller/AdminController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/mbecker/Desktop/Checkpoint4/Blooger/templates/admin/index.html.twig'|file_link(0) }}">templates/admin/index.html.twig</a></code></li>
-    </ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Bloggify</title>
+</head>
+<body id="page-top">
+<!-- Navigation-->
+{% include 'nav_bar.html.twig' %}
+<!-- Header-->
+<div style="margin-bottom: 15px">
+<header class="masthead text-center text-white">
+    <div class="masthead-content">
+        <div class="container px-5">
+            <h1 class="masthead-heading mb-0">Bloggify</h1>
+            <h2 class="masthead-subheading mb-0">Venez parler politique</h2>
+        </div>
+    </div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+</header>
 </div>
+<!-- Content section 1-->
+<section id="scroll">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/img.png" alt="..." /></div>
+            </div>
+            {% for article in articles %}
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <h2 class="display-4">{{ article.author.name }}</h2>
+                    <p>{{article.description}}</p>
+                    <a href="{{ path('entry', {'slug': article.slug}) }}">Lire la suite</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- Footer-->
+<footer class="py-5 bg-black">
+    <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Your Website 2021</p></div>
+</footer>
+</body>
+</html>
 {% endblock %}

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Form\EntryFormType;
+use App\Repository\ArticlePostRepository;
+use App\Repository\AuthorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -71,7 +73,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="author_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Author $admin): Response
     {
@@ -128,7 +130,7 @@ class AdminController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function entriesAction()
+    public function entriesAction(AuthorRepository $author)
     {
         $author = $this->authorRepository->findOneByUsername($this->getUser()->getUserName());
 
@@ -139,7 +141,8 @@ class AdminController extends AbstractController
         }
 
         return $this->render('admin/entries.html.twig', [
-            'articlePosts' => $articlePosts
+            'articlePosts' => $articlePosts,
+            'author' => $author,
         ]);
     }
 
@@ -167,5 +170,16 @@ class AdminController extends AbstractController
         $this->addFlash('success', 'Entry was deleted!');
 
         return $this->redirectToRoute('admin_entries');
+    }
+
+    /**
+     * @Route("/index", name="index", methods={"GET"})
+     */
+    public function index(AuthorRepository $userRepository, ArticlePostRepository $articlePostRepository): Response
+    {
+        return $this->render('/admin/index.html.twig', [
+            'authors' => $userRepository->findAll(),
+            'articles' => $articlePostRepository->findAll(),
+        ]);
     }
 }

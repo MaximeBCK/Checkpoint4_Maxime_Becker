@@ -5,7 +5,7 @@
     <br>
     <div class="container">
         <div class="blog-header">
-            <h1 class="blog-title">Author admin</h1>
+            <h1 class="blog-title">Profil de {{ author.name }}</h1>
             <p class="lead blog-description"></p>
         </div>
         <div class="row">
@@ -20,6 +20,7 @@
                 {% endfor %}
             </div>
             <div class="col-md-12 col-lg-12 col-xl-12">
+                <a type="button" href="{{ path('author_edit', {'id': author.id}) }}" class="btn btn-primary pull-right" style="margin-left: 15px">Modifie ton profil</a>
                 <a type="button" href="{{ path('admin_create_entry') }}" class="btn btn-primary pull-right">Add Entry</a>
             </div>
             <div class="col-sm-12 blog-main">

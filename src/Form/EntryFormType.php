@@ -27,14 +27,6 @@ class EntryFormType extends AbstractType
                 ]
             )
             ->add(
-                'slug',
-                TextType::class,
-                [
-                    'constraints' => [new NotBlank()],
-                    'attr' => ['class' => 'form-control']
-                ]
-            )
-            ->add(
                 'description',
                 TextareaType::class,
                 [

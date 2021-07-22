@@ -36,16 +36,16 @@ class AuthorRepository extends ServiceEntityRepository
     }
     */
 
-    /*
+
     public function findOneByUserName($value): ?Author
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
+            ->andWhere('a.username = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+
 
 }
