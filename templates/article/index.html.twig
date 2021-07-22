@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include "nav_bar.html.twig" %}
+    <br>
+    <nav class="navbar navbar-default navbar-static-top">
+        <div id="navbar" class="collapse navbar-collapse pull-right">
+            <ul class="nav navbar-nav">
+                <AmpContent>
+                    <li><a href="{{ path("author_create") }}">Admin</a></li>
+                    <li><a href="{{ logout_url("secured_area") }}">Logout</a></li>
+
+                </AmpContent>
+
+                <NonAmpContent>
+
+                    <li class="active"><a href="/connect/auth0">Login</a></li>
+
+                </NonAmpContent>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}

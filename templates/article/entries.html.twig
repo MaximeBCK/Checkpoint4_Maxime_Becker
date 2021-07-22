@@ -1,0 +1,74 @@
+{% extends "base.html.twig" %}
+{% block title %}App:article:entries{% endblock %}
+{% block body %}
+    {% include "nav_bar.html.twig" %}
+    <br>
+    <div class="container">
+        <div class="blog-header">
+            <h1 class="blog-title">Blog tutorial</h1>
+            <p class="lead blog-description">A basic description of the blog, built in Symfony, styled in Bootstrap 3, secured by <a href="http://auth0.com">Auth0</a>.</p>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                {% for articlePost in articlePosts %}
+                {% set paragraphs = articlePost.description|split('</p>') %}
+                {% set firstParagraph = paragraphs|first ~ '</p>' %}
+                <div class="blog-post">
+                    <h2 class="blog-post-title">
+                        {{ articlePost.title }}
+                    </h2>
+                    <p class="blog-post-meta">
+                        {{ articlePost.getUpdatedAt|date('F j, Y') }} by
+                        <AmpContent>
+                            <a href="{{ path('author', {'name': articlePost.author.username|url_encode }) }}">
+                                {{ articlePost.author.name }}
+                            </a>
+
+                        </AmpContent>
+
+                        <NonAmpContent>
+
+                            Unknown Author
+
+                        </NonAmpContent>
+                    </p>
+                    {{ firstParagraph|raw }}<br />
+                    <a href="{{ path('entry', {'slug': articlePost.slug}) }}">
+                    {{ articlePost.title }}
+                    </a>
+                </div>
+
+                </AmpContent>
+
+                <NonAmpContent>
+
+                    <div class="alert alert-danger" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        You have no blog articles. Please log in and create an article.
+                    </div>
+                    {% endfor %}
+                    {% set canPrevious = page > 1 %}
+                    {% set canNext = (page * entryLimit) < totalArticlePosts %}
+                    <nav>
+                        <ul class="pager">
+                            <li class="previous <AmpContent>disabled
+</NonAmpContent>">
+                                <a href="<AmpContent>{{ path('entries', {'page': page - 1}) }}
+</NonAmpContent>">
+                                    <span aria-hidden="true">&larr;</span> Older
+                                </a>
+                            </li>
+                            <li class="next <AmpContent>disabled
+</NonAmpContent>">
+                                <a href="<AmpContent>{{ path('entries', {'page': page + 1}) }}
+</NonAmpContent>">
+                                    Newer <span aria-hidden="true">&rarr;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+            </div>
+        </div>
+    </div>
+{% endblock %}
