@@ -128,6 +128,9 @@
             "config/routes/hwi_oauth_routing.yaml"
         ]
     },
+    "jms/metadata": {
+        "version": "2.5.0"
+    },
     "laminas/laminas-code": {
         "version": "4.4.2"
     },
@@ -722,6 +725,15 @@
     },
     "twig/twig": {
         "version": "v3.3.2"
+    },
+    "vich/uploader-bundle": {
+        "version": "1.7",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.7",
+            "ref": "c4f5755b37fb65b9c6a3cbdae91205c15a137ed4"
+        }
     },
     "webmozart/assert": {
         "version": "1.10.0"

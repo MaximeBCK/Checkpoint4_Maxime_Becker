@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class EntryFormType extends AbstractType
 {
@@ -49,7 +50,15 @@ class EntryFormType extends AbstractType
                     'attr' => ['class' => 'form-control btn-primary pull-right'],
                     'label' => 'Create!'
                 ]
-            );
+            )
+            ->add(
+                'slug',
+                TextType::class,[
+                    'constraints' => [new NotBlank()],
+                    'attr' => ['class' => 'form-control']
+                    ]
+            )
+        ;
     }
 
     /**

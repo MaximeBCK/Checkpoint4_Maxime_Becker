@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use datetime;
 
 /**
  * ArticlePost
- *
+ * @Vich\Uploadable
  * @ORM\Table(name="article_post")
  * @ORM\Entity(repositoryClass="App\Repository\ArticlePostRepository")
  * @ORM\HasLifecycleCallbacks
@@ -72,8 +75,48 @@ class ArticlePost
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $poster;
 
     /**
+     * @return string
+     */
+    public function getPoster(): string
+    {
+        return $this->poster;
+    }
+
+    /**
+     * @param string $poster
+     */
+    public function setPoster(string $poster): void
+    {
+        $this->poster = $poster;
+    }
+
+    public function setPosterFile(File $image = null)
+    {
+        $this->posterFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+    }
+
+    public function getPosterFile(): ?File
+    {
+        return $this->posterFile;
+    }
+
+    /**
+     * @Vich\UploadableField(mapping="poster_file", fileNameProperty="poster")
+     * @var File
+     */
+    private $posterFile;
+
+/**
      * Get id
      *
      * @return int
